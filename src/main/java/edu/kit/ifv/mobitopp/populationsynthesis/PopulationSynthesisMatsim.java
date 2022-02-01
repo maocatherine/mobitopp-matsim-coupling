@@ -15,10 +15,7 @@ import edu.kit.ifv.mobitopp.populationsynthesis.carownership.GenericElectricCarO
 import edu.kit.ifv.mobitopp.populationsynthesis.carownership.LogitBasedCarSegmentModel;
 import edu.kit.ifv.mobitopp.populationsynthesis.carownership.MobilityProviderCustomerModel;
 import edu.kit.ifv.mobitopp.populationsynthesis.carownership.ProbabilityForElectricCarOwnershipModel;
-import edu.kit.ifv.mobitopp.populationsynthesis.householdlocation.CarVelocityFilter;
-import edu.kit.ifv.mobitopp.populationsynthesis.householdlocation.EdgeFilter;
-import edu.kit.ifv.mobitopp.populationsynthesis.householdlocation.HouseholdLocationSelector;
-import edu.kit.ifv.mobitopp.populationsynthesis.householdlocation.RoadBasedHouseholdLocationSelector;
+import edu.kit.ifv.mobitopp.populationsynthesis.householdlocation.*;
 import edu.kit.ifv.mobitopp.populationsynthesis.opportunities.OpportunityLocationSelector;
 import edu.kit.ifv.mobitopp.populationsynthesis.opportunities.RoadBasedOpportunitySelector;
 import edu.kit.ifv.mobitopp.simulation.IdSequence;
@@ -67,6 +64,7 @@ public class PopulationSynthesisMatsim extends BasicPopulationSynthesisIpf {
 
 	private static HouseholdLocationSelector householdLocations(SynthesisContext context) {
 		return new RoadBasedHouseholdLocationSelector(context, maxDistance, edgeFilter());
+
 	}
 
 	private static EdgeFilter edgeFilter() {
@@ -82,7 +80,7 @@ public class PopulationSynthesisMatsim extends BasicPopulationSynthesisIpf {
 		ActivityScheduleCreator scheduleCreator = new DefaultActivityScheduleCreator();
     PanelDataRepository panelDataRepository = context.dataRepository().panelDataRepository();
     ActivityScheduleAssigner activityScheduleAssigner = new DefaultActivityAssigner(
-        panelDataRepository, scheduleCreator);;
+        panelDataRepository, scheduleCreator);
 		return populationSynthesis(householdLocationSelector, carOwnershipModel,
 				chargePrivatelySelector, personCreator, context, activityScheduleAssigner);
 	}
