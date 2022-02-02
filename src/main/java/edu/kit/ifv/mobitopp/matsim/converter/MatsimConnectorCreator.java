@@ -41,7 +41,7 @@ public class MatsimConnectorCreator extends BaseLinkCreator {
 					} else {
 						makeLink(connector.id,  
 											matsimNode,
-											zones.get("Z" + connector.zone.id + ":2"),
+											zones.get("Z" + connector.zone.id + ":1"), //Identical
 											linkLengthFor(connector),
 											CONNECTOR_CAPACITY,
 											CONNECTOR_FREESPEED,
