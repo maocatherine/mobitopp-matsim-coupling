@@ -87,7 +87,7 @@ public class SimulationContextDecorator implements SimulationContext {
 		return baseContext.personResults();
 	}
 
-	@Override
+	//@Override
 	public RestServerResourceRegistry restServer() {
 		return null;
 	}
