@@ -1,13 +1,8 @@
 package edu.kit.ifv.mobitopp.simulation;
 
-import java.io.File;
-
+import edu.kit.ifv.mobitopp.simulation.activityschedule.LeisureWalkActivityPeriodFixer;
 import edu.kit.ifv.mobitopp.simulation.activityschedule.randomizer.DefaultActivityDurationRandomizer;
-import edu.kit.ifv.mobitopp.simulation.destinationChoice.CarRangeReachableZonesFilter;
-import edu.kit.ifv.mobitopp.simulation.destinationChoice.DestinationChoiceForFlexibleActivity;
-import edu.kit.ifv.mobitopp.simulation.destinationChoice.DestinationChoiceModel;
-import edu.kit.ifv.mobitopp.simulation.destinationChoice.DestinationChoiceWithFixedLocations;
-import edu.kit.ifv.mobitopp.simulation.destinationChoice.SimpleRepeatedDestinationChoice;
+import edu.kit.ifv.mobitopp.simulation.destinationChoice.*;
 import edu.kit.ifv.mobitopp.simulation.modeChoice.ModeAvailabilityModel;
 import edu.kit.ifv.mobitopp.simulation.modeChoice.ModeAvailabilityModelAddingCarsharing;
 import edu.kit.ifv.mobitopp.simulation.modeChoice.ModeChoiceModel;
@@ -18,6 +13,8 @@ import edu.kit.ifv.mobitopp.simulation.person.DefaultTripFactory;
 import edu.kit.ifv.mobitopp.simulation.person.PersonStateSimple;
 import edu.kit.ifv.mobitopp.simulation.person.TripFactory;
 import edu.kit.ifv.mobitopp.simulation.tour.TourBasedModeChoiceModelDummy;
+
+import java.io.File;
 
 public class Mobitopp extends Simulation {
 
@@ -37,6 +34,7 @@ public class Mobitopp extends Simulation {
 		TripFactory tripFactory = new DefaultTripFactory();
 		return new DemandSimulatorPassenger(destinationSelector,
 				new TourBasedModeChoiceModelDummy(modeSelector), routeChoice,
+				new LeisureWalkActivityPeriodFixer(),
 				new DefaultActivityDurationRandomizer(context().seed()), tripFactory, rescheduling,
 				PersonStateSimple.UNINITIALIZED, context());
 	}

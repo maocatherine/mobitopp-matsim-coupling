@@ -30,6 +30,10 @@ public class MobitoppMatsimIteration {
 		matsim.createPlans();
 		Controler lastRun = matsim.simulate();
 		ImpedanceIfc impedance = finishIteration(matsim, lastRun, context);
+
+		//String test = lastRun.getLinkTravelTimes().toString();
+		//System.out.print("look" + test);
+
 		return Optional.of(impedance);
 	}
 

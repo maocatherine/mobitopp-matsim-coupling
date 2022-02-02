@@ -17,6 +17,10 @@
 		<param name="mobsim" value="qsim" />
 	</module>
 
+	<module name="facilities" >
+		<param name="inputFacilitiesFile" value="facilities.xml" />
+	</module>
+
 	<module name="planCalcScore" >
 		<parameterset type="activityParams" >
 			<param name="activityType" value="HOME" />

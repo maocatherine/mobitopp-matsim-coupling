@@ -33,6 +33,7 @@ import edu.kit.ifv.mobitopp.visum.VisumNetwork;
 import edu.kit.ifv.mobitopp.visum.VisumNode;
 import edu.kit.ifv.mobitopp.visum.VisumRoadNetwork;
 import edu.kit.ifv.mobitopp.visum.VisumZone;
+import org.matsim.core.utils.geometry.CoordUtils;
 
 public class MatsimNodeCreatorTest {
 
@@ -68,9 +69,9 @@ public class MatsimNodeCreatorTest {
 		assertThat(nodes, hasEntry(anotherNode().id(), anotherMatsimNode));
 		assertThat(nodes, hasEntry(otherNode().id(), otherMatsimNode));
 
-		verify(scenario).createCoord(someNode().coord.x, someNode().coord.y);
-		verify(scenario).createCoord(anotherNode().coord.x, anotherNode().coord.y);
-		verify(scenario).createCoord(otherNode().coord.x, otherNode().coord.y);
+		//verify(utils).createCoord(someNode().coord.x, someNode().coord.y);
+		//verify(utils).createCoord(anotherNode().coord.x, anotherNode().coord.y);
+		//verify(utils).createCoord(otherNode().coord.x, otherNode().coord.y);
 		verify(network).addNode(someMatsimNode);
 		verify(network).addNode(anotherMatsimNode);
 		verify(network).addNode(otherMatsimNode);
@@ -139,8 +140,8 @@ public class MatsimNodeCreatorTest {
 	}
 
 	private Node configureMatsimNode(VisumNode node) {
-		Coord coordinate = mock(Coord.class);
-		when(scenario.createCoord(node.coord.x, node.coord.y)).thenReturn(coordinate);
+		Coord coordinate = new Coord(node.coord.x, node.coord.y);
+		//when(utils.createCoord(node.coord.x, node.coord.y)).thenReturn(coordinate);
 		Node matsimNode = mock(Node.class);
 		when(factory.createNode(any(), eq(coordinate))).thenReturn(matsimNode);
 		return matsimNode;
@@ -166,4 +167,5 @@ public class MatsimNodeCreatorTest {
 		float y = id;
 		return visumNode().withId(id).at(x, y).build();
 	}
+
 }

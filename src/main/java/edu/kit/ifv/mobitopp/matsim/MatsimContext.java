@@ -5,6 +5,7 @@ import edu.kit.ifv.mobitopp.simulation.ImpedanceIfc;
 import edu.kit.ifv.mobitopp.simulation.SimulationContext;
 import edu.kit.ifv.mobitopp.visum.VisumNetwork;
 import edu.kit.ifv.mobitopp.visum.VisumRoadNetwork;
+import org.matsim.facilities.ActivityFacilities;
 
 public class MatsimContext extends SimulationContextDecorator implements SimulationContext {
 

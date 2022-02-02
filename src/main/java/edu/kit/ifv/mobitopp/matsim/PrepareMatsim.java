@@ -1,16 +1,25 @@
 package edu.kit.ifv.mobitopp.matsim;
 
 import java.io.File;
+import java.util.Stack;
 
 import org.matsim.api.core.v01.Scenario;
+import org.matsim.contrib.accessibility.AccessibilityConfigGroup;
+import org.matsim.contrib.accessibility.Modes4Accessibility;
 import org.matsim.core.config.Config;
+import org.matsim.core.config.ConfigGroup;
+import org.matsim.core.config.ConfigReader;
 import org.matsim.core.config.ConfigUtils;
+import org.matsim.core.config.groups.FacilitiesConfigGroup;
 import org.matsim.core.controler.OutputDirectoryHierarchy;
 import org.matsim.core.scenario.ScenarioUtils;
 
 import edu.kit.ifv.mobitopp.routing.ValidateLinks;
 import edu.kit.ifv.mobitopp.simulation.Matsim;
 import edu.kit.ifv.mobitopp.visum.VisumRoadNetwork;
+import org.matsim.core.utils.io.MatsimXmlParser;
+import org.matsim.facilities.*;
+import org.xml.sax.Attributes;
 
 public class PrepareMatsim {
 
@@ -31,6 +40,7 @@ public class PrepareMatsim {
 
 	private Matsim create(ActivityFilter filter) {
 		Scenario scenario = createScenario();
+		ScenarioUtils.loadScenario(scenario);
 		loadNetwork(scenario);
 		return new Matsim(context, scenario, filter);
 	}
@@ -48,13 +58,21 @@ public class PrepareMatsim {
 	private Config fromConfig() {
 		float fractionOfPopulation = context.fractionOfPopulation();
 		String matsimConfig = context.experimentalParameters().value("matsimConfig");
+		String facilityConfig = context.experimentalParameters().value("facilities");
+
 		Config config = ConfigUtils.loadConfig(matsimConfig);
+		config.facilities().setInputFile(facilityConfig);
+
 		config.qsim().setFlowCapFactor(fractionOfPopulation);
 		config.qsim().setStorageCapFactor(fractionOfPopulation);
 		config
 				.controler()
 				.setOverwriteFileSetting(
 						OutputDirectoryHierarchy.OverwriteFileSetting.deleteDirectoryIfExists);
+
+		AccessibilityConfigGroup accConfig = ConfigUtils.addOrGetModule(config, AccessibilityConfigGroup.class ) ;
+		accConfig.setComputingAccessibilityForMode(Modes4Accessibility.car, true);
+
 		updateResultFolder(config);
 		return config;
 	}

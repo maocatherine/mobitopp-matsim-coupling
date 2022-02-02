@@ -1,25 +1,17 @@
 package edu.kit.ifv.mobitopp.simulation;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
-import org.matsim.api.core.v01.Scenario;
-import org.matsim.api.core.v01.network.Network;
-import org.matsim.api.core.v01.population.Population;
-import org.matsim.core.controler.Controler;
-
 import edu.kit.ifv.mobitopp.data.TravelTimeMatrix;
 import edu.kit.ifv.mobitopp.data.Zone;
 import edu.kit.ifv.mobitopp.data.ZoneId;
-import edu.kit.ifv.mobitopp.matsim.ActivityFilter;
-import edu.kit.ifv.mobitopp.matsim.ExternalDemandCreator;
-import edu.kit.ifv.mobitopp.matsim.MatsimContext;
-import edu.kit.ifv.mobitopp.matsim.MatsimPersonCreator;
-import edu.kit.ifv.mobitopp.matsim.MatsimPlanCreator;
+import edu.kit.ifv.mobitopp.matsim.*;
+import org.matsim.api.core.v01.Scenario;
+import org.matsim.api.core.v01.network.Network;
+import org.matsim.api.core.v01.population.Population;
+import org.matsim.contrib.accessibility.AccessibilityModule;
+import org.matsim.contrib.accessibility.AccessibilityUtils;
+import org.matsim.core.controler.Controler;
+
+import java.util.*;
 
 public class Matsim {
 
@@ -40,7 +32,7 @@ public class Matsim {
   public void createPersons() {
     System.out.println("Create demand for matsim");
     createInternalDemand();
-    createExternalDemand();
+    //createExternalDemand();
   }
 
   private void createInternalDemand() {
@@ -79,7 +71,17 @@ public class Matsim {
   }
 
   public Controler simulate() {
+    List<String> activityTypes = AccessibilityUtils.collectAllFacilityOptionTypes(scenario);
+    System.out.println("The following activity types were found: " + activityTypes);
+
     Controler controler = new Controler(scenario);
+    for (final String actType : activityTypes) { // Add an overriding module for each activity type.
+      final AccessibilityModule module = new AccessibilityModule();
+      module.setConsideredActivityType(actType);
+      controler.addOverridingModule(module);
+
+    }
+    //controler.addOverridingModule( new OTFVisLiveModule() ) ;
     controler.run();
     return controler;
   }

@@ -50,6 +50,7 @@ public class MatsimMatrixGenerator {
   }
 
   private void runInParallel(Runnable task) {
+    System.out.print(task.toString());
     ForkJoinPool forkJoinPool = new ForkJoinPool(numberOfThreads());
     try {
       forkJoinPool.submit(task).get();
@@ -59,6 +60,7 @@ public class MatsimMatrixGenerator {
   }
 
   private int numberOfThreads() {
+    System.out.println("number of threads = " + Runtime.getRuntime().availableProcessors());
     return Runtime.getRuntime().availableProcessors();
   }
 

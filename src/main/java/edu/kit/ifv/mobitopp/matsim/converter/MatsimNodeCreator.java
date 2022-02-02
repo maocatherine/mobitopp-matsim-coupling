@@ -75,7 +75,8 @@ public class MatsimNodeCreator {
 	}
 
 	private Coord coordinate(float x, float y) {
-		return scenario.createCoord(x, y);
+		return new Coord(x, y);
+		// return scenario.createCoord(x, y);
 	}
 
 }

@@ -9,6 +9,7 @@ import java.util.Map;
 import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.population.Person;
 import org.matsim.api.core.v01.population.Plan;
+import org.matsim.utils.objectattributes.attributable.Attributes;
 
 public class DummyPerson implements Person {
 
@@ -71,4 +72,8 @@ public class DummyPerson implements Person {
 		return removedPlans;
 	}
 
+	@Override
+	public Attributes getAttributes() {
+		return null;
+	}
 }

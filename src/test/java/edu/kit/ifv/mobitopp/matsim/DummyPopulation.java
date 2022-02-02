@@ -7,6 +7,7 @@ import org.matsim.api.core.v01.population.Person;
 import org.matsim.api.core.v01.population.Population;
 import org.matsim.api.core.v01.population.PopulationFactory;
 import org.matsim.utils.objectattributes.ObjectAttributes;
+import org.matsim.utils.objectattributes.attributable.Attributes;
 
 final class DummyPopulation implements Population {
 
@@ -28,7 +29,7 @@ final class DummyPopulation implements Population {
 		return persons;
 	}
 
-	@Override
+	//@Override
 	public ObjectAttributes getPersonAttributes() {
 		throw new RuntimeException("Not implemented!");
 	}
@@ -47,5 +48,14 @@ final class DummyPopulation implements Population {
 	public void addPerson(Person p) {
 		throw new RuntimeException("Not implemented!");
 	}
-		
+
+	@Override
+	public Person removePerson(Id<Person> personId) {
+		return null;
+	}
+
+	@Override
+	public Attributes getAttributes() {
+		return null;
+	}
 }

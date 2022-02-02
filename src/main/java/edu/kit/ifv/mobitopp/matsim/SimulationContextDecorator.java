@@ -1,5 +1,6 @@
 package edu.kit.ifv.mobitopp.matsim;
 
+import edu.kit.ifv.mobitopp.communication.RestServerResourceRegistry;
 import edu.kit.ifv.mobitopp.data.DataRepositoryForSimulation;
 import edu.kit.ifv.mobitopp.data.PersonLoader;
 import edu.kit.ifv.mobitopp.data.ZoneRepository;
@@ -84,6 +85,11 @@ public class SimulationContextDecorator implements SimulationContext {
 	@Override
 	public PersonResults personResults() {
 		return baseContext.personResults();
+	}
+
+	@Override
+	public RestServerResourceRegistry restServer() {
+		return null;
 	}
 
 	@Override

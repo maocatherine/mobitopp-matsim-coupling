@@ -19,7 +19,7 @@ import edu.kit.ifv.mobitopp.network.SimpleEdge;
 
 public class CarVelocityFilterTest {
 
-	private static final int maxVelocity = 1;
+	private static final int maxVelocity = 50;
 	private static final float lowerThanMaxVelocity = maxVelocity - 1.0f;
 	private static final float higherThanMaxVelocity = maxVelocity + 1.0f;
 
