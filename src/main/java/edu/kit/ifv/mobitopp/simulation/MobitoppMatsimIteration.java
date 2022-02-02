@@ -23,24 +23,26 @@ public class MobitoppMatsimIteration {
     }
 
     public Optional<ImpedanceIfc> simulate() {
+
+        //Start Mobitopp simulation.
         Mobitopp mobitopp = new Mobitopp(context);
-        Matsim matsim = PrepareMatsim.from(context);
         mobitopp.simulate();
+
+        //This steps prepare MATSim context.
+        Matsim matsim = PrepareMatsim.from(context);
         matsim.createPersons();
         matsim.createPlans();
+
+        //Start MATSim simulation from here.
         Controler lastRun = matsim.simulate();
         ImpedanceIfc impedance = finishIteration(matsim, lastRun, context);
-
-        //String test = lastRun.getLinkTravelTimes().toString();
-        //System.out.print("look" + test);
 
         return Optional.of(impedance);
     }
 
     private ImpedanceIfc finishIteration(Matsim matsim, Controler lastRun, MatsimContext context) {
         MatrixPrinter matrixPrinter = new MatrixPrinter();
-        TreeMap<Integer, TravelTimeMatrix> travelTimeMatrices = matsim
-                .createTravelTimeMatrices(lastRun);
+        TreeMap<Integer, TravelTimeMatrix> travelTimeMatrices = matsim.createTravelTimeMatrices(lastRun);
         MatrixWriter matrixWriter = new MatrixWriter(matrixPrinter);
         matrixWriter.setTravelTimeMatrixFolder(context);
         matrixWriter.writeTravelTimeMatrices(travelTimeMatrices);
