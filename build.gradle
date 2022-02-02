@@ -4,12 +4,12 @@ apply plugin: 'eclipse'
 apply plugin: 'maven'
 apply plugin: 'jacoco'
 
-group = 'edu.kit.ifv.mobitopp'
-version = 0.1
-//wrapper.gradleVersion = '6.3'
-
-sourceCompatibility = 1.12
-targetCompatibility = 1.12
+//group = 'edu.kit.ifv.mobitopp'
+//version = 0.1
+////wrapper.gradleVersion = '6.3'
+//
+//sourceCompatibility = 1.12
+//targetCompatibility = 1.12
 
 repositories {
     jcenter()
@@ -31,12 +31,15 @@ configurations.all {
 }
 
 dependencies {
-
-    //implementation project(':mobitopp')
+    implementation project (':mobitopp')
 
     implementation 'org.junit.jupiter:junit-jupiter:5.7.0',
             'org.matsim:matsim:13.0',
-            'org.matsim.contrib:accessibility:13.0'
+            'org.matsim.contrib:accessibility:13.0',
+            'org.slf4j:slf4j-api:1.7.35'
+// https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api
+            'org.apache.logging.log4j:log4j-api:2.15.0'
+
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
     compileOnly 'org.projectlombok:lombok:1.18.8'
     compile 'org.jvnet.ogc:kml-v_2_2_0:2.2.0'
