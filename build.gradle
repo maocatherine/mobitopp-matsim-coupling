@@ -1,9 +1,9 @@
-
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'maven'
-apply plugin: 'jacoco'
-
+//
+//apply plugin: 'java'
+//apply plugin: 'eclipse'
+//apply plugin: 'maven'
+//apply plugin: 'jacoco'
+//
 //group = 'edu.kit.ifv.mobitopp'
 //version = 0.1
 ////wrapper.gradleVersion = '6.3'
@@ -31,21 +31,19 @@ configurations.all {
 }
 
 dependencies {
-    implementation project (':mobitopp')
+
+    implementation project(':mobitopp')
 
     implementation 'org.junit.jupiter:junit-jupiter:5.7.0',
             'org.matsim:matsim:13.0',
             'org.matsim.contrib:accessibility:13.0',
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
             'org.slf4j:slf4j-api:1.7.35'
-// https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api
-            'org.apache.logging.log4j:log4j-api:2.15.0'
 
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
     compileOnly 'org.projectlombok:lombok:1.18.8'
     compile 'org.jvnet.ogc:kml-v_2_2_0:2.2.0'
             //'edu.kit.ifv.mobitopp:mobitopp:latest.integration'
-            //libraries.slf4j,
-            //libraries.log4j
         
     testCompile 'junit:junit:4.12',
         'org.hamcrest:hamcrest-all:1.3',
@@ -62,13 +60,13 @@ task runPopulationSynthesis(type: JavaExec) {
 }
 
 task runSimulation(type: JavaExec) {
-    args = ['data/simulation.yaml']
+    args = ['config/simulation-matsim.yaml']
     main = "edu.kit.ifv.mobitopp.simulation.MobitoppMatsimCoupling"
 }
 
 task runMobitopp(type: JavaExec) {
-    args = ['data/simulation.yaml']
-    main = "edu.kit.ifv.mobitopp.simulation.OnlyMobiTopp"
+    args = ['config/simulation-mobitopp-only.yaml']
+    main = "edu.kit.ifv.mobitopp.simulation.Mobitopp"
 }
 
 tasks.withType(JavaExec) {
