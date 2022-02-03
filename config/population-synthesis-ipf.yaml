@@ -18,7 +18,7 @@ dataSource: !file
   #charging: unlimited
   defaultChargingPower: data_clayton/parameters/ChargingPower.txt
   zoneRepositoryFolder: output/zone-repository/
-demographyData: 
+demographyData:
   age_f: data_clayton/zone_properties/demography-ipf.csv
   age_m: data_clayton/zone_properties/demography-ipf.csv
   dom_code: data_clayton/zone_properties/demography-ipf.csv
