@@ -40,9 +40,9 @@ public class ExternalDemandCreator {
 	}
 
 	private List<VisumMatrix> externalTraffic() {
-		VisumMatrix matrix1 = VisumMatrix.loadFrom(externalMatrixFileFor("externalTrafficW"));
-		VisumMatrix matrix2 = VisumMatrix.loadFrom(externalMatrixFileFor("externalTrafficEx"));
-		return Arrays.asList(matrix1, matrix2);
+		VisumMatrix matrix1 = VisumMatrix.loadFrom(externalMatrixFileFor("externalTraffic"));
+//		VisumMatrix matrix2 = VisumMatrix.loadFrom(externalMatrixFileFor("externalTrafficEx"));
+		return Arrays.asList(matrix1);
 	}
 
 	private File externalMatrixFileFor(String fileName) {
