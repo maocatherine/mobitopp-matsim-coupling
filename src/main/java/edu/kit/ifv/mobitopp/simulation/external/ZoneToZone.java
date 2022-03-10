@@ -10,23 +10,23 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class ZoneToZone extends ExternalTrip {
 
-  private final int from;
-  private final int to;
+    private final int from;
+    private final int to;
 
-  public ZoneToZone(int id, int from, int to, Time startTime) {
-    super(id, startTime);
-    this.from = from;
-    this.to = to;
-  }
+    public ZoneToZone(int id, int from, int to, Time startTime) {
+        super(id, startTime);
+        this.from = from;
+        this.to = to;
+    }
 
-  @Override
-  public Activity doCreateSource(String suffix, ActivityCreator create) {
-    return create.activityForZone(suffix, from);
-  }
+    @Override
+    public Activity doCreateSource(String suffix, ActivityCreator create) {
+        return create.activityForZone(suffix, from);
+    }
 
-  @Override
-  public Activity doCreateDestination(String suffix, ActivityCreator create) {
-    return create.activityForZone(suffix, to);
-  }
+    @Override
+    public Activity doCreateDestination(String suffix, ActivityCreator create) {
+        return create.activityForZone(suffix, to);
+    }
 
 }
