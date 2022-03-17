@@ -23,6 +23,6 @@ fractionOfPopulation: 1
 resultFolder: results/simulation
 seed: 1234
 visumFile: data_clayton/clayton/Clayton12km.net
-#experimental:
-#  parameter1: 1
+experimental:
+  externalTraffic: data_clayton/external_demand/demand-external.mtx
 #  parameter2: 2

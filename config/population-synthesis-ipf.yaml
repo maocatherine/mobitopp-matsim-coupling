@@ -8,7 +8,7 @@ commuterTicket: data_clayton/parameters/TransitPassParameter.txt
 dataSource: !file
   demandDataFolder: output/demand-data
   matrixConfigurationFile: data_clayton/matrices/matrix-configuration.yaml
-  attractivityDataFile: data_clayton/zone_properties/attractivities.csv
+  attractivityDataFile: data_clayton/zone_properties/attractivities.csv #Change here
   zonePropertiesDataFile: data_clayton/zone_properties/zone-properties.csv
   parkingFacilitiesDataFile: data_clayton/zone_properties/parking-facilities.csv
   bikeSharingPropertiesDataFile: data_clayton/zone_properties/bikesharing-properties.csv
@@ -29,7 +29,7 @@ resultFolder: results/population-synthesis
 seed: 77859
 synthesisZoneProperties: data_clayton/zone_properties/synthesis-zone-properties.csv
 visumFile: data_clayton/clayton/Clayton12km.net
-pois: data_clayton/zone_properties/Clayton_12km_Opportunity_Poi.csv
+pois: data_clayton/zone_properties/Clayton_12km_Opportunity_Poi.csv #Change here
 #experimental:
 #  parameter1: 1
 #  parameter2: 2
