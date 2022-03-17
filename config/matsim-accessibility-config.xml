@@ -22,7 +22,7 @@
 		<param name="measuringPointsFile" value="config/measure-points-origin.xml"/>
 		<param name="outputCRS" value="null"/>
 		<!-- time of day at which trips for accessibility computations are assumed to start now it is 12pm-->
-		<param name="timeOfDay" value="43200.0"/>
+		<param name="timeOfDay" value="36000.0"/>
 		<param name="useOpportunityWeights" value="false"/>
 		<param name="weightExponent" value="1.0"/>
 	</module>
@@ -30,7 +30,7 @@
 	<module name="controler">
 		<param name="outputDirectory" value="results/matsim"/>
 		<param name="firstIteration" value="0"/>
-		<param name="lastIteration" value="50"/>
+		<param name="lastIteration" value="10"/>
 		<param name="eventsFileFormat" value="xml"/>
 		<param name="writeEventsInterval" value="5"/>
 		<!--
@@ -93,9 +93,10 @@
 			<param name="activityType" value="OUTFLOW"/>
 			<param name="typicalDuration" value="00:02:00"/>
 		</parameterset>
+
 		<parameterset type="modeParams">
 			<param name="mode" value="car"/>
-			<param name="marginalUtilityOfTraveling_util_hr" value="-6.0"/>
+			<param name="marginalUtilityOfTraveling_util_hr" value="-6"/> <!-- This is to represent the lower VoT -->
 		</parameterset>
 		<parameterset type="modeParams">
 			<param name="mode" value="walk"/>

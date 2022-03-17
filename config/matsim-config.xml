@@ -5,7 +5,7 @@
 	<module name="controler">
 		<param name="outputDirectory" value="results/matsim" />
 		<param name="firstIteration" value="0" />
-		<param name="lastIteration" value="50" />
+		<param name="lastIteration" value="10" />
 		<param name="eventsFileFormat" value="xml" />
 		<param name="writeEventsInterval" value="5" />
 		<!--
